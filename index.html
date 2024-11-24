@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>IPTV Player</title>
+    <title>TV Web</title>
     <link rel="stylesheet" href="styles/index.css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
@@ -102,51 +102,24 @@
         >
           <div class="flex gap-2 items-start">
             <img
-              src="https://cdn.mitvstatic.com/channels/mx_azteca-7_m.png"
+              src=""
               alt="Logo IPTV"
-              class="w-[140px] h-[140px] rounded-xl object-cover"
+              class="w-[140px] h-[140px] rounded-xl object-contain"
               id="channel-current-logo"
               onerror="this.src='https://static.vecteezy.com/system/resources/previews/007/688/855/non_2x/tv-logo-free-vector.jpg';"
             />
 
             <div class="text-white font-bold">
-              <h1 class="text-2xl" id="channel-current-name">
-                Azteca 7 (720p)
-              </h1>
-              <p class="opacity-80" id="channel-current-country">Mexico</p>
+              <h1 class="text-2xl" id="channel-current-name"></h1>
+              <p class="opacity-80" id="channel-current-country"></p>
             </div>
           </div>
 
           <div class="gap-2 px-6 pb-12 absolute bottom-0 right-0">
-            <!-- <div
-              class="p-1 rounded-full backdrop-blur-sm bg-neutral-200/10 hover:bg-neutral-900 flex items-center justify-center gap-2 group cursor-pointer transioin-background duration-200 text-white"
-              id="channel-list-button"
-            >
-              <span class="text-tiny text-neutral-400 group-hover:text-white"
-                >Canales</span
-              >
-              <img
-                src="https://www.svgrepo.com/show/484548/settings-gear.svg"
-                alt="Configuración"
-                class="w-[12px] h-[12px] rounded-sm object-cover"
-              />
-            </div> -->
             <ul
-              class="overflow-y-auto p-3 max-h-[50vh] w-full backdrop-blur-sm rounded-xl"
+              class="overflow-y-auto p-3 max-h-[50vh] w-full backdrop-blur-sm rounded-xl bg-neutral-900/30"
               id="channel-list"
-            >
-              <li class="flex items-center gap-3">
-                <img
-                  src="https://cdn.mitvstatic.com/channels/mx_azteca-7_m.png"
-                  alt=""
-                  class="w-[30px] h-[30px] rounded-sm object-cover"
-                />
-                <div class="text-white font-bold">
-                  <h1 class="text-[10px]">Azteca 7 (720p)</h1>
-                  <p class="text-[10px] opacity-80">Mexico</p>
-                </div>
-              </li>
-            </ul>
+            ></ul>
           </div>
         </div>
 
@@ -158,27 +131,8 @@
         </div>
       </div>
 
-      <!-- <div class="fixed w-full h-screen z-20 p-5">
-        <div
-          class="bg-gradient-to-b from-neutral-800/80 to-neutral-950/80 w-full h-full rounded-xl backdrop-blur-sm"
-        >
-          <h1>Modal</h1>
-        </div>
-      </div> -->
+      <!-- REPODRUCTOR DE VIDEO -->
 
-      <!-- <select id="channelList">
-        <option value="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8">
-          Channel 1
-        </option>
-        <option value="https://test-streams.mux.dev/test_001/stream.m3u8">
-          Channel 2
-        </option>
-        <option
-          value="https://live-streams.mux.dev/elephants_dream/playlist.m3u8"
-        >
-          Channel 3
-        </option>
-      </select> -->
       <div class="w-full h-screen">
         <video id="videoPlayer" autoplay class="w-full h-full"></video>
       </div>

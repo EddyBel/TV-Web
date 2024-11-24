@@ -1,4 +1,9 @@
 export class IPTV {
+  constructor() {
+    this.useProxy = true;
+    this.proxyWebsite = "https://proxy.com/";
+  }
+
   // Método para obtener una lista de canales desde un archivo M3U
   async getChannelsFromM3U(m3uUrl) {
     try {

@@ -25,13 +25,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const gridItem = document.createElement("li");
       gridItem.className =
-        "flex items-center gap-3 p-2 hover:bg-neutral-800 transition-background duration-200 cursor-pointer rounded-xl text-white text-nowrap";
+        "flex items-center gap-3 p-2 hover:bg-neutral-950 transition-background duration-200 cursor-pointer rounded-xl text-white text-nowrap";
 
       gridItem.innerHTML = `
         <img
                   src="${channel.logo}"
                   alt=""
-                  class="w-[30px] h-[30px] rounded-sm object-cover"
+                  class="w-[30px] h-[30px] rounded-sm object-contain"
                   onerror="this.src='https://static.vecteezy.com/system/resources/previews/007/688/855/non_2x/tv-logo-free-vector.jpg';"
                 />
                 <div class="text-white font-bold">
