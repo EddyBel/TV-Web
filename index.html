@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IPTV Player</title>
+    <link rel="stylesheet" href="../styles/index.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  </head>
+  <body class="bg-neutral-950 min-h-screen w-full">
+    <nav
+      class="class bg-neutral-900 text-neutral-200 rounded-br-xl rounded-tr-xl fixed top-0 left-0 h-screen w-2/4 p-3 z-20 overflow-y-auto -translate-x-[100%]"
+      id="channellist-container"
+    >
+      <div class="w-full flex gap-2 items-center">
+        <div
+          class="w-full p-2 rounded-xl bg-neutral-800 flex items-center justify-between"
+        >
+          <input
+            type="text"
+            class="bg-transparent w-full outline-none"
+            placeholder="Buscar..."
+          />
+        </div>
+        <button
+          class="w-[40px] h-[40px] bg-neutral-900 text-white rounded-xl hover:bg-neutral-800 transition-background duration-200 flex items-center justify-center"
+        >
+          X
+        </button>
+      </div>
+      <ul
+        class="flex-col items-center justify-center gap-3 h-full"
+        id="list-channels"
+      >
+        <li
+          class="flex items-center gap-2 w-full hover:bg-neutral-700 transition-background duration-200 cursor-pointer p-2 rounded-xl"
+          flex-wrap
+        >
+          <img
+            src="https://www.rac.mx/wp-content/uploads/2023/08/65A547.png"
+            alt="Logo IPTV"
+            class="w-10 h-10 rounded-xl"
+            onerror=""
+          />
+          <div>
+            <h1 class="text-lg font-bold">IPTV Player</h1>
+            <p>Mexico</p>
+          </div>
+        </li>
+      </ul>
+    </nav>
+    <main
+      class="flex flex-col items-center justify-center w-full min-h-screen relative"
+    >
+      <div
+        class="absolute top-0 left-0 w-full h-screen z-10 transition-all duration-500"
+        style="
+          background: rgb(0, 0, 0);
+          background: linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 1) 0%,
+            rgba(9, 9, 121, 0) 23%,
+            rgba(5, 5, 61, 0) 83%,
+            rgba(0, 0, 0, 1) 100%
+          );
+        "
+        id="controls-container"
+      >
+        <div class="p-4 flex items-center justify-between">
+          <div class="text-white flex gap-3 items-center">
+            <p class="text-white font-bold text-4xl flex items-start gap-1">
+              <span id="weather-temperature"></span
+              ><span class="text-lg opacity-70">°C</span>
+            </p>
+            <div class="h-[35px] w-[1px] bg-white rounded-xl"></div>
+            <div class="flex items-center gap-2">
+              <img
+                src="https://www.svgrepo.com/show/474587/clear.svg"
+                alt="Soleado"
+                class="w-10 h-10 rounded-xl object-cover"
+                id="weather-icon"
+              />
+              <div class="text-white font-bold">
+                <p class="text-[11px] opacity-80" id="wheather-location"></p>
+                <p class="text-lg" id="weather-description"></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="pr-4">
+            <p class="text-white font-bold text-xl" id="time-day">Lunes</p>
+            <p class="text-white opacity-80 text-sm flex gap-2 items-center">
+              <span id="time-date">23/11/2024</span>
+              <span id="time-hour">07:16 p.m.</span>
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="flex items-center px-6 pb-12 absolute bottom-0 left-0 w-full"
+        >
+          <div class="flex gap-2 items-start">
+            <img
+              src="https://cdn.mitvstatic.com/channels/mx_azteca-7_m.png"
+              alt="Logo IPTV"
+              class="w-[140px] h-[140px] rounded-xl object-cover"
+              id="channel-current-logo"
+              onerror="this.src='https://static.vecteezy.com/system/resources/previews/007/688/855/non_2x/tv-logo-free-vector.jpg';"
+            />
+
+            <div class="text-white font-bold">
+              <h1 class="text-2xl" id="channel-current-name">
+                Azteca 7 (720p)
+              </h1>
+              <p class="opacity-80" id="channel-current-country">Mexico</p>
+            </div>
+          </div>
+
+          <div class="gap-2 px-6 pb-12 absolute bottom-0 right-0">
+            <!-- <div
+              class="p-1 rounded-full backdrop-blur-sm bg-neutral-200/10 hover:bg-neutral-900 flex items-center justify-center gap-2 group cursor-pointer transioin-background duration-200 text-white"
+              id="channel-list-button"
+            >
+              <span class="text-tiny text-neutral-400 group-hover:text-white"
+                >Canales</span
+              >
+              <img
+                src="https://www.svgrepo.com/show/484548/settings-gear.svg"
+                alt="Configuración"
+                class="w-[12px] h-[12px] rounded-sm object-cover"
+              />
+            </div> -->
+            <ul
+              class="overflow-y-auto p-3 max-h-[50vh] w-full backdrop-blur-sm rounded-xl"
+              id="channel-list"
+            >
+              <li class="flex items-center gap-3">
+                <img
+                  src="https://cdn.mitvstatic.com/channels/mx_azteca-7_m.png"
+                  alt=""
+                  class="w-[30px] h-[30px] rounded-sm object-cover"
+                />
+                <div class="text-white font-bold">
+                  <h1 class="text-[10px]">Azteca 7 (720p)</h1>
+                  <p class="text-[10px] opacity-80">Mexico</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div
+          class="w-full overflow-hidden absolute bottom-0 left-0"
+          id="channellist-container-bottom"
+        >
+          <!-- ... Lista de canales  -->
+        </div>
+      </div>
+
+      <!-- <div class="fixed w-full h-screen z-20 p-5">
+        <div
+          class="bg-gradient-to-b from-neutral-800/80 to-neutral-950/80 w-full h-full rounded-xl backdrop-blur-sm"
+        >
+          <h1>Modal</h1>
+        </div>
+      </div> -->
+
+      <!-- <select id="channelList">
+        <option value="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8">
+          Channel 1
+        </option>
+        <option value="https://test-streams.mux.dev/test_001/stream.m3u8">
+          Channel 2
+        </option>
+        <option
+          value="https://live-streams.mux.dev/elephants_dream/playlist.m3u8"
+        >
+          Channel 3
+        </option>
+      </select> -->
+      <div class="w-full h-screen">
+        <video id="videoPlayer" autoplay class="w-full h-full"></video>
+      </div>
+
+      <!-- <div class="w-full p-8" id="channellist-container-bottom"> -->
+      <!-- ... Lista de canales  -->
+      <!-- </div> -->
+    </main>
+
+    <script src="./scripts/index.js" type="module"></script>
+  </body>
+</html>
